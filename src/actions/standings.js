@@ -12,6 +12,7 @@ const mergeStandings = (standings) => {
     return {
       team: team.name,
       position: result.position,
+      crest: team.crestUrl,
       total: totalSorted[index],
       home: homeSorted[index],
       away: awaySorted[index],
@@ -22,7 +23,7 @@ const mergeStandings = (standings) => {
 
 export const getStandings = () => dispatch => {
   dispatch({
-    type: 'LOADING_MOVIES',
+    type: 'LOADING_STANDINGS',
     payload: 'result'
   })
   const url = `http://api.football-data.org/v2/competitions/PD/standings`
@@ -36,8 +37,15 @@ export const getStandings = () => dispatch => {
       const { standings } = data;
       const standingsMerged = mergeStandings(standings)
       dispatch({
-        type: 'SET_POPULAR_MOVIES',
+        type: 'SET_STANDINGS',
         payload: standingsMerged
       })
     })
+}
+
+export const sortStandings = (sort) => dispatch => {
+  dispatch({
+    type: 'SORT_STANDINGS',
+    payload: sort
+  })
 }
