@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import reducer from './reducer';
+import standings from './standings';
 
 export default combineReducers({
-  reducer
+  standings
 });
