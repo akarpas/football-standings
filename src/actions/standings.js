@@ -26,7 +26,7 @@ export const getStandings = () => dispatch => {
     type: 'LOADING_STANDINGS',
     payload: 'result'
   })
-  const url = `http://api.football-data.org/v2/competitions/PD/standings`
+  const url = `https://api.football-data.org/v2/competitions/PD/standings`
   fetch(url, {
     method: "GET",
     headers: {
