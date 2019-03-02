@@ -1,4 +1,154 @@
+button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
 .app {
   height: 100vh;
+  width: 100%;
   background-color: lightgray;
+}
+
+.container {
+  padding: 5vh 5vw;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  width: calc(100% - 10vw);
+  border-radius: 10px;
+}
+
+.loading {
+  width: 100%;
+  text-align: center;
+  padding: 2vh 2vw;
+}
+
+.mainHeader {
+  background-color: #D26E75;
+  border-radius: 10px 10px 0 0;
+  padding: 0 1vw;
+  text-align: center;
+}
+
+.headerOne, .headerTwo, .row, .rowLast {
+  display: flex;
+  flex-flow: row;
+  font-size: 0.9rem;
+  width:100%;
+}
+
+.headerOne, .headerTwo {
+  font-weight: 700;
+  background-color: #2A4150;
+  color: white;
+  font-size: 1rem;
+}
+
+.headerTwo {
+  border-bottom: 1px solid #2A4150;
+}
+
+.headerOne div,
+.headerTwo div,
+.row div,
+.rowLast div {
+  text-align: center;
+  width: 25%;
+}
+
+.firstColumn {
+  display: flex;
+  flex-flow: row;
+}
+
+.firstColumn .countColHead {
+  display: flex;
+  flex-flow: row;
+  align-items: flex-start;
+  justify-content: center;
+  max-width: 10%;
+  text-align: center;
+}
+.firstColumn .teamColHead {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  min-width: 80%;
+  text-align: left;
+  font-weight: 600;
+}
+
+.positionHolder {
+  display: flex;
+  flex-flow: row;
+}
+
+.positionHolder .countColHead {
+  width: auto;
+  text-align: center;
+}
+
+.crest {
+  max-width: 20px;
+  min-width: 20px;
+  padding: 0 1vw;
+}
+
+.total, .home, .away {
+  display: flex;
+  flex-flow: row;
+}
+
+.total div, .home div, .away div {
+  width: 12.5%;
+  color: lightcyan;
+}
+
+.row,
+.rowLast, {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  background-color: #131F28;
+  color: white;
+  min-height: 2vw;
+  font-size: 0.75rem;
+  border-bottom: 1px solid lightblue;
+}
+
+.rowLast {
+  border-radius: 0 0 10px 10px;
+}
+
+@media only screen and (max-width: 800px) {
+  .home, .away {
+    display: none;
+  }
+  .headerOne div,
+  .headerTwo div,
+  .row div,
+  .rowLast div {
+    width: 50%;
+  }
+  .awayLabel,
+  .homeLabel {
+    display: none;
+  }
+  .container {
+    padding: 2vh 0.5vw;
+    width: calc(100% - 1vw);
+  }
+  .row, .rowLast {
+    height: 4vh;
+  }
+  button {
+    font-size: 0.65rem;
+    padding: 0;
+  }
 }
