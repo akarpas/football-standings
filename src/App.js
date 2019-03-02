@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getStandings } from './actions/standings';
+import { getStandingsList, getStandingsLoading } from './reducers/standings';
 
 import style from './App.module.scss';
 
@@ -11,6 +12,8 @@ class App extends Component {
   }
 
   render() {
+    const { standings } = this.props;
+    console.warn('standings ', standings)
     return (
       <div className={style.app}>
         Test
@@ -20,7 +23,8 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  ...state
+  standings: getStandingsList(state),
+  standingsLoading: getStandingsLoading(state)
 })
 
 const mapDispatchToProps = dispatch => ({

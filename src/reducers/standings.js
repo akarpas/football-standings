@@ -23,4 +23,4 @@ export default (state = {initialState}, action) => {
 }
 
 export const getStandingsLoading = (state) => state.standings.standingsLoading;
-export const getStandings = (state) => state.standings.standings;
+export const getStandingsList = (state) => state.standings.standings;
