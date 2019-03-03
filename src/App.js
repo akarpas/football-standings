@@ -4,6 +4,7 @@ import { getStandings, sortStandings } from './actions/standings';
 import {
   getStandingsList, getStandingsLoading, getApiError
 } from './reducers/standings';
+import Button from './Button';
 
 import style from './App.module.scss';
 
@@ -43,17 +44,8 @@ class App extends Component {
 
   renderButton = (type, column, label) => {
     const { sort } = this.state;
-    const { which, order } = sort;
-
     return (
-      <button onClick={e => this.handleClick(e)} id={`${type}-${column}`}>
-        {which === `${type}-${column}` && (
-          <span id={`${type}-${column}`}>{order === 'ascending'
-            ? <span id={`${type}-${column}`}>&darr;</span>
-            : <span id={`${type}-${column}`}>&uarr;</span>}
-          </span>)}
-        <span id={`${type}-${column}`}>{label}</span>
-      </button>
+      <Button data={{ sort, type, column, label }} handleClick={e => this.handleClick(e)}/>
     )
   }
 
