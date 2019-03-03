@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getStandings, sortStandings } from './actions/standings';
-import { getStandingsList, getStandingsLoading } from './reducers/standings';
+import {
+  getStandingsList, getStandingsLoading, getApiError
+} from './reducers/standings';
 
 import style from './App.module.scss';
 
@@ -111,13 +113,13 @@ class App extends Component {
   }
 
   render() {
-    const { standings, standingsLoading } = this.props;
+    const { standings, standingsLoading, apiError } = this.props;
 
     return (
       <div className={style.app}>
-        {standingsLoading
-          ? <div className={style.loading}>Loading...</div>
-          : (
+        {apiError && <div className={style.error}>Error: {apiError}</div>}
+        {standingsLoading && <div className={style.loading}>Loading...</div>}
+        {!standingsLoading && !apiError && (
             <div className={style.container}>
               <header className={style.mainHeader}>
                 <h3>Standings</h3>
@@ -154,7 +156,8 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   standings: getStandingsList(state),
-  standingsLoading: getStandingsLoading(state)
+  standingsLoading: getStandingsLoading(state),
+  apiError: getApiError(state)
 })
 
 const mapDispatchToProps = dispatch => ({
