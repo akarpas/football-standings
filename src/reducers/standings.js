@@ -3,10 +3,11 @@ import _ from 'lodash';
 const initialState = {
   standings: [],
   standingsLoading: false,
+  apiError: null,
 }
 
 const setStandings = (state, action) => {
-  return { ...state, standings: action.payload, standingsLoading: false };
+  return { ...state, standings: action.payload, standingsLoading: false, apiError: null };
 }
 
 const sortStandings = (state, action) => {
@@ -17,14 +18,22 @@ const sortStandings = (state, action) => {
   return { ...state, standings: order === 'ascending' ? sortedStandings : sortedStandings.reverse() };
 }
 
-const setLoading = (state) => {
+const setLoading = state => {
   return { ...state, standingsLoading: true };
+}
+
+const setError = (state, action) => {
+  const { payload } = action;
+  const { message } = payload;
+  return { ...state, standingsLoading: false, apiError: message }
 }
 
 export default (state = {initialState}, action) => {
   switch (action.type) {
     case 'LOADING_STANDINGS':
       return setLoading(state);
+    case 'SET_ERROR':
+      return setError(state, action);
     case 'SET_STANDINGS':
       return setStandings(state, action);
     case 'SORT_STANDINGS':
@@ -34,5 +43,6 @@ export default (state = {initialState}, action) => {
   }
 }
 
-export const getStandingsLoading = (state) => state.standings.standingsLoading;
-export const getStandingsList = (state) => state.standings.standings;
+export const getStandingsLoading = state => state.standings.standingsLoading;
+export const getStandingsList = state => state.standings.standings;
+export const getApiError = state => state.standings.apiError;

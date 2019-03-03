@@ -26,7 +26,7 @@ export const getStandings = () => dispatch => {
     type: 'LOADING_STANDINGS',
     payload: 'result'
   })
-  const url = `https://api.football-data.org/v2/competitions/PD/standings`
+  const url = `https://api.football-data.org/v2/competitions/PD/standings/`
   fetch(url, {
     method: "GET",
     headers: {
@@ -34,12 +34,19 @@ export const getStandings = () => dispatch => {
     },
   }).then(response => response.json())
     .then(data => {
-      const { standings } = data;
-      const standingsMerged = mergeStandings(standings)
-      dispatch({
-        type: 'SET_STANDINGS',
-        payload: standingsMerged
-      })
+      if (data.errorCode) {
+        dispatch({
+          type: 'SET_ERROR',
+          payload: data
+        })
+      } else {
+        const { standings } = data;
+        const standingsMerged = mergeStandings(standings)
+        dispatch({
+          type: 'SET_STANDINGS',
+          payload: standingsMerged
+        })
+      }
     })
 }
 
