@@ -1,0 +1,16 @@
+button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 800px) {
+  button {
+    font-size: 0.65rem;
+    padding: 0;
+  }
+}
